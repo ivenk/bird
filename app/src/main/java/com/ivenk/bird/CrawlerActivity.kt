@@ -5,15 +5,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.Volley
+import com.ivenk.bird.web.Crawler
+import com.ivenk.bird.web.MobalyticsCrawler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.jsoup.HttpStatusException
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
 
 class CrawlerActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView

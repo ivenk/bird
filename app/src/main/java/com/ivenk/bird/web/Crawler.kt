@@ -1,4 +1,4 @@
-package com.ivenk.bird
+package com.ivenk.bird.web
 
 interface Crawler {
 

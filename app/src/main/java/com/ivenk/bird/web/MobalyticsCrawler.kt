@@ -1,9 +1,5 @@
-package com.ivenk.bird
+package com.ivenk.bird.web
 
-import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.Volley
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
