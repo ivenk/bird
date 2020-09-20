@@ -31,7 +31,7 @@ class CrawlerActivity : AppCompatActivity() {
         crawler = MobalyticsCrawler()
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MatchupAdapter(mutableListOf<String>().toTypedArray())
+        viewAdapter = MatchupAdapter(mutableListOf())
 
         recyclerView = findViewById<RecyclerView>(R.id.matchups).apply {
             // use this setting to improve performance if you know that changes
@@ -59,7 +59,7 @@ class CrawlerActivity : AppCompatActivity() {
     }
 
     private fun callBack(data : List<Triple<String, String, String>>) {
-        viewAdapter = MatchupAdapter(data.map { it.first }.toList().toTypedArray())
+        viewAdapter = MatchupAdapter(data)
         recyclerView.apply { adapter = viewAdapter }
     }
 }

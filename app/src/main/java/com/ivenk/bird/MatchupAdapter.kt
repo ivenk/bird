@@ -1,39 +1,36 @@
 package com.ivenk.bird
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 
-class MatchupAdapter (private val myDataset: Array<String>) :
+class MatchupAdapter (private val myDataset: List<Triple<String, String, String>>) :
     RecyclerView.Adapter<MatchupAdapter.MyViewHolder>() {
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder.
-    // Each data item is just a string in this case that is shown in a TextView.
-    class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+    class MyViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view)
 
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): MatchupAdapter.MyViewHolder {
-        // create a new view
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.matchup_item, parent, false) as TextView
-        // set the view's size, margins, paddings and layout parameters
+        val linearLayout = LayoutInflater.from(parent.context)
+            .inflate(R.layout.matchup_item, parent, false) as LinearLayout
 
-        // Do other stuff
-        return MyViewHolder(textView)
+        return MyViewHolder(linearLayout)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.textView.text = myDataset[position]
+        val nameView = holder.view.get(0) as TextView
+        nameView.text = myDataset[position].first
+
+        val messageView = holder.view.get(1) as TextView
+        messageView.text = myDataset[position].third
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = myDataset.size
 }
