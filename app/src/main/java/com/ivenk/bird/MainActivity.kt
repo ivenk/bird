@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button = findViewById(R.id.myActivity)
-        button.setOnClickListener { startActivity(Intent(this, CrawlerActivity::class.java)) }
+        button.setOnClickListener { startActivity(Intent(this, MatchupActivity::class.java)) }
+
+
     }
 }
