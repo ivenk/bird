@@ -19,17 +19,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ChampSelectFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
     }
 
     override fun onCreateView(
@@ -37,14 +28,19 @@ class ChampSelectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        println("ChampSelectFragment.onCreateView")
+
         if (container != null) {
             val arrayAdapter = ArrayAdapter(
                 container.context,
-                R.layout.champ_select_dropdown,
+                android.R.layout.select_dialog_item,
                 arrayOf("One", "Two", "Three")
             )
 
+            println("Adapter was set")
+
             val autoCompleteTextView = container.findViewById<AutoCompleteTextView>(R.id.champ_select_dropdown)
+            autoCompleteTextView.threshold = 1
             autoCompleteTextView.setAdapter(arrayAdapter)
         }
 
@@ -54,22 +50,7 @@ class ChampSelectFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ChampSelectFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ChampSelectFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = ChampSelectFragment()
     }
 }
