@@ -1,5 +1,6 @@
 package com.ivenk.bird.web
 
+import com.ivenk.bird.domain.MatchupScrap
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -10,16 +11,11 @@ class MobalyticsCrawler : Crawler {
     private val baseURL = "https://www.mobafire.com"
 
 
-    private fun browseGuides(urls: List<String>) : List<Triple<String, String, String>>{
+    private fun browseGuides(urls: List<String>) : List<MatchupScrap> {
         println("BrowseGuides called with :" )
 
-        return urls.map {
-            val page = getPage(it)
-            if (page != null) {
-                parseGuide(page) ?: mutableListOf()
-            } else {
-                mutableListOf()
-            }
+        return urls.map {url ->
+            getPage(url)?.let { parseGuide(it) } ?: mutableListOf()
         }.toList().flatten()
     }
 
@@ -49,17 +45,15 @@ class MobalyticsCrawler : Crawler {
     }
 
 
-    private fun parseGuide(webPage: Document) : List<Triple<String, String, String>>? {
-        //TODO: Maybe change return type to not be nullable instead an empty list
+    private fun parseGuide(webPage: Document) : List<MatchupScrap> {
         val element = webPage.getElementsByClass("view-guide__tS__bot__left")
         val champEntries = element.first()?.getElementsByClass("row")
-        return champEntries?.map {
-            val champName = it.select("h4").text()
-            val difficulty = it.select("label").text()
-            val description = it.select("p").text()
-            println("${champName}, difficulty : ${difficulty}")
-            Triple(champName, difficulty, description)
-        }?.toList()
+        return champEntries?.map { MatchupScrap(
+                it.select("h4").text(),
+                it.select("label").text(),
+                it.select("p").text()
+            )
+        }?.toList() ?: mutableListOf()
     }
 
     private fun getPage(url : String) : Document? {
@@ -71,7 +65,7 @@ class MobalyticsCrawler : Crawler {
         }
     }
 
-    override fun gatherData(champion: String): List<Triple<String, String, String>> {
+    override fun gatherData(champion: String): List<MatchupScrap> {
         val championDoc = browseChamp()
 
         val urls = findGuides(championDoc)
