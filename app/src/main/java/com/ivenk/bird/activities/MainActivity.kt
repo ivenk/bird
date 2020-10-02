@@ -1,9 +1,11 @@
-package com.ivenk.bird
+package com.ivenk.bird.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.fragment.app.FragmentActivity
+import com.ivenk.bird.ChampSelectFragment
+import com.ivenk.bird.R
 
 class MainActivity : FragmentActivity() {
 

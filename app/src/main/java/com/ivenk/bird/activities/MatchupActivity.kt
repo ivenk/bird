@@ -1,10 +1,12 @@
-package com.ivenk.bird
+package com.ivenk.bird.activities
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ivenk.bird.MatchupAdapter
+import com.ivenk.bird.R
 import com.ivenk.bird.web.Crawler
 import com.ivenk.bird.web.MatchupScrap
 import com.ivenk.bird.web.mobalytics.MobalyticsCrawler
