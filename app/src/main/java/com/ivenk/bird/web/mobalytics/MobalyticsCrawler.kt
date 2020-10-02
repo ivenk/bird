@@ -44,6 +44,7 @@ class MobalyticsCrawler : Crawler {
     }
 
     private fun filterGuides(allGuidePanels: Elements?) : Elements {
+        //TODO: Implement usage of guide reference
         //TODO: Filter guides based on rating, patch etc ....
         if (allGuidePanels != null) return allGuidePanels
         else throw IllegalArgumentException("No Elements given !")
