@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Choose your champion !"
+        android:text="@string/champ_select_frag_heading"
         android:textSize="35sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
 
     <AutoCompleteTextView
         android:id="@+id/champ_select_dropdown"
-        android:hint="Your champion ..."
+        android:hint="@string/champ_select_frag_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"/>
