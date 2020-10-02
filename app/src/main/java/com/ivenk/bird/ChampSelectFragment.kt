@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
  */
 class ChampSelectFragment : Fragment() {
 
+    lateinit var selectionView : AutoCompleteTextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -30,13 +32,13 @@ class ChampSelectFragment : Fragment() {
             arrayOf("One", "Two", "Three")
         )
 
-        val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.champ_select_dropdown)
-        autoCompleteTextView.threshold = 0
-        autoCompleteTextView.setAdapter(arrayAdapter)
+        selectionView = view.findViewById<AutoCompleteTextView>(R.id.champ_select_dropdown)
+        selectionView.threshold = 0
+        selectionView.setAdapter(arrayAdapter)
         //TODO: Configure dropdown to show immediately once the text field is selected
     }
 
-    fun getSelectedChampion() : String = "sth"
+    fun getSelectedChampion() : String = selectionView.text.toString()
 
     companion object {
         @JvmStatic
