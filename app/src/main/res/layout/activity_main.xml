@@ -6,12 +6,12 @@
     tools:context=".MainActivity"
     android:orientation="horizontal">
 
+
     <fragment
         android:name="com.ivenk.bird.ChampSelectFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400px"
         android:id="@+id/ownChampSelect" />
-
 
     <Button
         android:id="@+id/myActivity"
@@ -19,4 +19,5 @@
         android:layout_height="wrap_content"
         android:text="Start MyActivity"
         />
+
 </LinearLayout>
