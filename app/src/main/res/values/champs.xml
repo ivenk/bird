@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: Find out how to use string arrays and create and array with all the champion names -->
+<resources>
+    <string-array name="champs">"Renekton", "Test"</string-array>
+
+
+</resources>

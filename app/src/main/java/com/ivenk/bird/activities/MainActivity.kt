@@ -31,6 +31,4 @@ class MainActivity : FragmentActivity() {
             putString("my-champ", myChampSelection.getSelectedChampion())
         }))
     }
-
-
 }
