@@ -11,9 +11,11 @@ class MobalyticsCrawler : Crawler {
 
     private val guideParser = MobalyticsGuideParser()
 
-    private fun browseGuides(urls: List<String>) : List<MatchupScrap> {
-        println("BrowseGuides called with :" )
+    override fun gatherData(champion: String): List<MatchupScrap> {
+        return browseGuides(findGuides(browseChamp()))
+    }
 
+    private fun browseGuides(urls: List<String>) : List<MatchupScrap> {
         return urls.map { url ->
             getPage(url)?.let { guideParser.parse(it) } ?: mutableListOf()
         }.toList().flatten()
@@ -51,13 +53,5 @@ class MobalyticsCrawler : Crawler {
             println("[*] Could not reach url: $url")
             null
         }
-    }
-
-    override fun gatherData(champion: String): List<MatchupScrap> {
-        val championDoc = browseChamp()
-
-        val urls = findGuides(championDoc)
-
-        return browseGuides(urls)
     }
 }
