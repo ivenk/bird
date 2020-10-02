@@ -1,6 +1,5 @@
 package com.ivenk.bird.web
 
-import com.ivenk.bird.domain.MatchupScrap
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -48,7 +47,8 @@ class MobalyticsCrawler : Crawler {
     private fun parseGuide(webPage: Document) : List<MatchupScrap> {
         val element = webPage.getElementsByClass("view-guide__tS__bot__left")
         val champEntries = element.first()?.getElementsByClass("row")
-        return champEntries?.map { MatchupScrap(
+        return champEntries?.map {
+            MatchupScrap(
                 it.select("h4").text(),
                 it.select("label").text(),
                 it.select("p").text()
