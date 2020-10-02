@@ -9,12 +9,13 @@ class MobalyticsCrawler : Crawler {
     private val championUrlPart = "league-of-legends/champion/"
     private val baseURL = "https://www.mobafire.com"
 
+    private val guideParser = MobalyticsGuideParser()
 
     private fun browseGuides(urls: List<String>) : List<MatchupScrap> {
         println("BrowseGuides called with :" )
 
-        return urls.map {url ->
-            getPage(url)?.let { parseGuide(it) } ?: mutableListOf()
+        return urls.map { url ->
+            getPage(url)?.let { guideParser.parse(it) } ?: mutableListOf()
         }.toList().flatten()
     }
 
@@ -41,19 +42,6 @@ class MobalyticsCrawler : Crawler {
         //TODO: Filter guides based on rating, patch etc ....
         if (allGuidePanels != null) return allGuidePanels
         else throw IllegalArgumentException("No Elements given !")
-    }
-
-
-    private fun parseGuide(webPage: Document) : List<MatchupScrap> {
-        val element = webPage.getElementsByClass("view-guide__tS__bot__left")
-        val champEntries = element.first()?.getElementsByClass("row")
-        return champEntries?.map {
-            MatchupScrap(
-                it.select("h4").text(),
-                it.select("label").text(),
-                it.select("p").text()
-            )
-        }?.toList() ?: mutableListOf()
     }
 
     private fun getPage(url : String) : Document? {
