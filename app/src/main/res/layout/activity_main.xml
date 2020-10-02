@@ -4,20 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="horizontal">
-
+    android:orientation="vertical">
 
     <fragment
         android:name="com.ivenk.bird.ChampSelectFragment"
         android:layout_width="match_parent"
-        android:layout_height="400px"
+        android:layout_height="@dimen/champ_select_frag_height"
         android:id="@+id/ownChampSelect" />
+
+    <fragment
+        android:name="com.ivenk.bird.ChampSelectFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/champ_select_frag_height"
+        android:id="@+id/enemyChampSelect" />
 
     <Button
         android:id="@+id/myActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start MyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/lookup_matchup"
         />
 
 </LinearLayout>
