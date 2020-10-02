@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ivenk.bird.web.Crawler
+import com.ivenk.bird.web.MatchupScrap
 import com.ivenk.bird.web.MobalyticsCrawler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -59,11 +60,11 @@ class MatchupActivity : AppCompatActivity() {
         }
     }
 
-    private fun filter(data: List<Triple<String, String, String>>, champName: String) : List<Triple<String, String, String>> {
-        return data;
+    private fun filter(data: List<MatchupScrap>, champName: String) : List<MatchupScrap> {
+        return data
     }
 
-    private fun callBack(data : List<Triple<String, String, String>>) {
+    private fun callBack(data: List<MatchupScrap>) {
         viewAdapter = MatchupAdapter(data)
         recyclerView.apply { adapter = viewAdapter }
     }
