@@ -5,19 +5,30 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.fragment.app.FragmentActivity
 
-class MainActivity : FragmentActivity(), ChampSelectFragment.ChampSelectListener {
+class MainActivity : FragmentActivity() {
 
-   lateinit var button: Button
+    lateinit var enemyChampSelection: ChampSelectFragment
+    lateinit var myChampSelection: ChampSelectFragment
+
+    lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
        button = findViewById(R.id.myActivity)
-       button.setOnClickListener { startActivity(Intent(this, MatchupActivity::class.java)) }
+       button.setOnClickListener { onButtonClick() }
+
+        myChampSelection = supportFragmentManager.findFragmentById(R.id.ownChampSelect) as ChampSelectFragment
+        enemyChampSelection = supportFragmentManager.findFragmentById(R.id.enemyChampSelect) as ChampSelectFragment
     }
 
-    override fun onChampSelected(champ: String) {
-        println("Activity received selected champion $champ")
+    private fun onButtonClick() {
+        startActivity(Intent(this, MatchupActivity::class.java).putExtras(Bundle().apply {
+            putString("enemy-champ", enemyChampSelection.getSelectedChampion())
+            putString("my-champ", myChampSelection.getSelectedChampion())
+        }))
     }
+
+
 }

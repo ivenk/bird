@@ -24,6 +24,9 @@ class MatchupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my)
 
+        val enemyChamp = intent.extras?.getString("enemy-champ")
+        println("And here its $enemyChamp")
+
         crawler = MobalyticsCrawler()
 
         viewManager = LinearLayoutManager(this)
