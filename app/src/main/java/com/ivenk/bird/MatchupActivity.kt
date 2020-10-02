@@ -24,8 +24,8 @@ class MatchupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my)
 
-        val enemyChamp = intent.extras?.getString("enemy-champ")
-        println("And here its $enemyChamp")
+        val enemyChamp = intent.extras?.getString("enemy-champ") ?: throw IllegalStateException("MatchupActivity called with null value for enemy")
+        val myChamp = intent.extras?.getString("my-champ") ?: throw IllegalStateException("MatchupActivity called with null value for enemy")
 
         crawler = MobalyticsCrawler()
 
@@ -48,13 +48,19 @@ class MatchupActivity : AppCompatActivity() {
         connectButton = findViewById(R.id.loadButton)
         connectButton.setOnClickListener {
             GlobalScope.launch(context = Dispatchers.IO) {
-                val collectedData = crawler.gatherData("sth")
+                val collectedData = crawler.gatherData(myChamp)
+
+                filter(collectedData, enemyChamp)
 
                 GlobalScope.launch(context = Dispatchers.Main) {
                     callBack(collectedData)
                 }
             }
         }
+    }
+
+    private fun filter(data: List<Triple<String, String, String>>, champName: String) : List<Triple<String, String, String>> {
+        return data;
     }
 
     private fun callBack(data : List<Triple<String, String, String>>) {
