@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ivenk.bird.web.Crawler
 import com.ivenk.bird.web.MatchupScrap
-import com.ivenk.bird.web.MobalyticsCrawler
+import com.ivenk.bird.web.mobalytics.MobalyticsCrawler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

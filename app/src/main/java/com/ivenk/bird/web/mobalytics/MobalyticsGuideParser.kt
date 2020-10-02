@@ -1,5 +1,7 @@
-package com.ivenk.bird.web
+package com.ivenk.bird.web.mobalytics
 
+import com.ivenk.bird.web.GuideParser
+import com.ivenk.bird.web.MatchupScrap
 import org.jsoup.nodes.Document
 
 class MobalyticsGuideParser : GuideParser {
@@ -8,9 +10,12 @@ class MobalyticsGuideParser : GuideParser {
         val champEntries = element.first()?.getElementsByClass(champEntry)
         return champEntries?.map {
             MatchupScrap(
-                it.select(championName).text(),
-                it.select(difficulty).text(),
-                it.select(description).text()
+                it.select(championName)
+                    .text(),
+                it.select(difficulty)
+                    .text(),
+                it.select(description)
+                    .text()
             )
         }?.toList() ?: mutableListOf()
     }

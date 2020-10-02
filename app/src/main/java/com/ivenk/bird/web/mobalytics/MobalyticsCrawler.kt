@@ -1,5 +1,7 @@
-package com.ivenk.bird.web
+package com.ivenk.bird.web.mobalytics
 
+import com.ivenk.bird.web.Crawler
+import com.ivenk.bird.web.MatchupScrap
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -9,7 +11,8 @@ class MobalyticsCrawler : Crawler {
     private val championUrlPart = "league-of-legends/champion/"
     private val baseURL = "https://www.mobafire.com"
 
-    private val guideParser = MobalyticsGuideParser()
+    private val guideParser =
+        MobalyticsGuideParser()
 
     override fun gatherData(champion: String): List<MatchupScrap> {
         return browseGuides(findGuides(browseChamp()))
